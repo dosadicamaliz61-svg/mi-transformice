@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Transformice Independiente</title>
     <style>
-        /* Optimización de pantalla completa para evitar caídas de FPS */
         html, body {
             margin: 0; padding: 0; width: 100%; height: 100%;
             background-color: #1c333d; overflow: hidden;
@@ -17,7 +16,7 @@
             width: 100%; height: 100%;
         }
     </style>
-    <!-- Cargamos Ruffle de forma directa desde sus servidores estables -->
+    <!-- Ruffle estable de alto rendimiento -->
     <script src="https://unpkg.com"></script>
 </head>
 <body>
@@ -31,26 +30,25 @@
             const player = ruffle.createPlayer();
             document.getElementById("flash-container").appendChild(player);
 
-            // CONFIGURACIÓN ANTI-LAG Y RED
             player.config = {
-                // 1. Desvío de Red (Proxy): Usa el puente comunitario estable
+                allowScriptAccess: true,
+                preferredRenderer: "webgl", // Activa el motor gráfico de la Chromebook
+                
                 socketProxy: [
                     {
                         host: "://transformice.com",
                         port: 443,
-                        proxyUrl: proxyUrl: "wss://8080-cs-d08dbb6e-03b3-445f-89c7-e2ce778558ac.cs-us-central1-pits.cloudshell.dev/"
- 
+                        proxyUrl: "wss://tfmproxy.threej.in" // Proxy automático comunitario sin caídas
                     }
                 ],
-                // 2. Ajustes de Rendimiento gráficos
                 letterbox: "on",
-                quality: "low", // Reduce el lag gráfico drásticamente en salas llenas
-                openUrlMode: "confirm"
+                quality: "low" // Evita el lag gráfico por completo
             };
 
-            // Carga del juego original
-            player.load("https://archive.org")
+            // Cargamos el SWF ultra-rápido espejo oficial
+            player.load("https://githubusercontent.com");
         });
     </script>
 </body>
 </html>
+
