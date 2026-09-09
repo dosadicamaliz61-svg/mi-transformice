@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Transformice Independiente</title>
+    <style>
+        /* Optimización de pantalla completa para evitar caídas de FPS */
+        html, body {
+            margin: 0; padding: 0; width: 100%; height: 100%;
+            background-color: #1c333d; overflow: hidden;
+        }
+        #flash-container {
+            width: 100%; height: 100%;
+        }
+        #flash-container ruffle-player {
+            width: 100%; height: 100%;
+        }
+    </style>
+    <!-- Cargamos Ruffle de forma directa desde sus servidores estables -->
+    <script src="https://unpkg.com"></script>
+</head>
+<body>
+
+    <div id="flash-container"></div>
+
+    <script>
+        window.RufflePlayer = window.RufflePlayer || {};
+        window.addEventListener("load", (event) => {
+            const ruffle = window.RufflePlayer.newest();
+            const player = ruffle.createPlayer();
+            document.getElementById("flash-container").appendChild(player);
+
+            // CONFIGURACIÓN ANTI-LAG Y RED
+            player.config = {
+                // 1. Desvío de Red (Proxy): Usa el puente comunitario estable
+                socketProxy: [
+                    {
+                        host: "://transformice.com",
+                        port: 443,
+                        proxyUrl: "wss://tfmproxy.threej.in" 
+                    }
+                ],
+                // 2. Ajustes de Rendimiento gráficos
+                letterbox: "on",
+                quality: "low", // Reduce el lag gráfico drásticamente en salas llenas
+                openUrlMode: "confirm"
+            };
+
+            // Carga del juego original
+            player.load("https://transformice.com");
+        });
+    </script>
+</body>
+</html>
