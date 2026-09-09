@@ -16,7 +16,7 @@
             width: 100%; height: 100%;
         }
     </style>
-    <!-- Ruffle estable de alto rendimiento -->
+    <!-- Ruffle oficial para Google Chrome -->
     <script src="https://unpkg.com"></script>
 </head>
 <body>
@@ -32,23 +32,22 @@
 
             player.config = {
                 allowScriptAccess: true,
-                preferredRenderer: "webgl", // Activa el motor gráfico de la Chromebook
+                preferredRenderer: "webgl",
                 
                 socketProxy: [
                     {
                         host: "://transformice.com",
                         port: 443,
-                        proxyUrl: "wss://tfmproxy.threej.in" // Proxy automático comunitario sin caídas
+                        proxyUrl: "wss://tfmproxy.threej.in" 
                     }
                 ],
                 letterbox: "on",
-                quality: "low" // Evita el lag gráfico por completo
+                quality: "low"
             };
 
-            // Cargamos el SWF ultra-rápido espejo oficial
+            // Enlace directo corregido (Raw) para evitar el error 'Failed to fetch'
             player.load("https://githubusercontent.com");
         });
     </script>
 </body>
 </html>
-
